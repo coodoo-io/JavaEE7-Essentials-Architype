@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="${rootArtifactId}PU" transaction-type="JTA">
+    <!-- The jta-data-source references the JNDI name of the database this persistence unit should use.
+         The java:/DefaultDS points to the default data source of your server JavaEE Server.
+         In case of JBoss Wildfly: Embedded HSQL DB usually configured in /standalone/configuration/standalone.xml -->
+    <jta-data-source>java:/DefaultDS</jta-data-source>
+    <properties>
+      <!-- Is used to specify the action taken by the persistence provider when an application is deployed.
+           If the property is not set, the persistence provider will not create or drop any database artifacts on server start/stop.
+           
+           Possible values:
+           none - No schema creation or deletion will take place.
+           create - The provider will create the database artifacts on application deployment. The artifacts will remain unchanged after application redeployment.
+           drop-and-create - Any artifacts in the database will be deleted, and the provider will create the database artifacts on deployment.
+           drop - Any artifacts in the database will be deleted on application deployment.
+           -->
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+      
+      <!-- Enable the logging of all the generated SQL statements to the console -->
+			<property name="hibernate.show_sql" value="false" />
+      
+      <!-- Format the generated SQL statement to make it more readable, but takes up more screen space. -->
+			<property name="hibernate.format_sql" value="true" />
+
+      <!-- Hibernate will put comments inside all generated SQL statements to hint what’s the generated SQL trying to do -->
+      <property name="use_sql_comments" value="true" />
+    </properties>
+  </persistence-unit>
+</persistence>
