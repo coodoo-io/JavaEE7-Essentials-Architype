@@ -2,7 +2,7 @@
 The minimum you need to get started with a new JavaEE Project!
 
 What does it contain:
-- Opinionated Version of what a Java EE Project should contain
+- Opinionated Version of what every new Java EE Project should contain
 
 How To use:
 ```sh
